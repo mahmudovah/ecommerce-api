@@ -21,7 +21,7 @@ class OrderSerializer(serializers.ModelSerializer):
         read_only_fields = ['created_at', 'updated_at','total_amount']
 
 
-class OrderCreateSerializer(serializers.ModelSerializer):
+class OrderCreateSerializer(serializers.Serializer):
     shipping_address = serializers.CharField()
     phone = serializers.CharField(max_length=13)
     notes = serializers.CharField(required=False, allow_blank=True)
