@@ -5,6 +5,7 @@ from rest_framework.decorators import action
 from order.models import Order, OrderItem
 from order.serializers import OrderSerializer, OrderItemSerializer, OrderCreateSerializer
 from cart.models import Cart
+from order.telegram import send_telegram_notification
 
 
 class OrderViewSet(viewsets.ReadOnlyModelViewSet):
@@ -45,6 +46,7 @@ class OrderViewSet(viewsets.ReadOnlyModelViewSet):
             product.save()
 
         cart.items.all().delete()
+        send_telegram_notification(order)
         return Response(OrderSerializer(order).data, status=201)
     
     @action(detail=True, methods=['post'])

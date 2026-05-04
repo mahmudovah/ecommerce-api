@@ -7,4 +7,4 @@ class OrderConfig(AppConfig):
 
     def ready(self):
         import order.signals  # noqa: F401 — signallarni ulash
- 
+        

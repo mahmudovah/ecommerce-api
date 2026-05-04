@@ -1,5 +1,6 @@
 import requests
 from django.conf import settings
+from order.models import Order
 
 
 def send_telegram_notification(order):
@@ -11,6 +12,7 @@ def send_telegram_notification(order):
 
     # Zakaz ma'lumotlarini yig'ish
     items_text = ""
+    print(hasattr(order, 'items'))
     if hasattr(order, 'items'):
         for item in order.items.all():
             items_text += f"  • {item.product.name} x {item.quantity} — {item.price} so'm\n"
